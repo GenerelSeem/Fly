@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Flyshopper";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript">
+        $(function () {
+            $('#til').on('change', function () {
+                var val = $(this).val();  
+                    $('#Stockholm').hide();
+                    $('#Munich').hide();
+                    $('#Tokyo').hide();
+                    $('#' + val).show();
+                });
+
+        });
+        </script>
+    
+           
+    <script type="text/javascript">
+        $(function () {
+            $('#Betaling').on('click', function () {
+                var val = $(this).val();
+                $('#Kort').hide();
+                $('#Kontant').hide();
+                $('#' + val).show();
+            })
+        })
+    </script>
+    
+</head>
+<body>
+    <form action="" method="post"> 
+     <label for="Fornavn">Fornavn<br /></label>
+     <input id="Fornavn" name="Fornavn" type="text" value=""/>        
+        <label for="Etternavn">Etternavn<br /></label>
+        <input id="Etternavn" name="Etternavn" type="text" value="" />
+    <input type="submit"name="Navn" value="Legg til Navn"/><br />
+    </form>
+    <h2>Hvor vil du fly hen?</h2>
+    <select>
+        <option value="" selected="selected"></option>
+        <option value="Oslo">Oslo</option>
+        <option value="London">London</option>
+        <option value="Roma">Roma</option>
+    </select>
+
+    <select id="til" name="til">
+        <option value="" selected="selected"></option>
+        <option value="Stockholm">Stockholm</option>
+        <option value="Munich">Munich</option>
+        <option value="Tokyo">Tokyo</option>
+    </select> <br />
+
+
+    <form id="Stockholm" style="display:none">
+        <d1> Dato for reisen blir 20.11.18</d1><br />
+        <d2> Prisen er 1500 kr </d2>
+
+    </form>
+    <form id="Munich" style="display:none">
+        <d3> Dato for reisen blir 20.11.18</d3><br />
+        <d4> Prisen er 1800 kr </d4>
+
+    </form>
+    <form id="Tokyo" style="display:none">
+        <d5> Dato for reisen blir 20.11.18</d5><br />
+        <d6> Prisen er 5100 kr </d6>
+
+    </form>
+  <br />
+    <select id="Betaling" name="Betaling">
+        <option value="" selected="selected"></option>
+        <option value="Kort">Kort</option>
+        <option value="Kontant">Kontant</option>
+    </select>   <br />
+    <form id="Kort" style="display:none">
+        <d7>Betaling godkjent</d7>
+    </form>
+    
+
+    <form id="Kontant" style="display:none">
+        <d8>Feil du kan ikke betale med kontanter på nett</d8>
+    </form>      
+</body>
+
+</html>

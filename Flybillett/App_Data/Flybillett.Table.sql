@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[Table]
+(
+	[Flyplass] VARCHAR(50) NOT NULL PRIMARY KEY
+)
