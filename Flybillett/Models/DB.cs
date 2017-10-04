@@ -1,14 +1,18 @@
-﻿using System;
+﻿
+
+using Flybillett.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
+
 namespace Flybillett.Models
 {
 
-    public class flyreise
+    public class Flyreise
         {
         public int id { get; set; }
         public string fraBy { get; set; }
@@ -18,11 +22,11 @@ namespace Flybillett.Models
         public string pris { get; set; }
         }
 
-    public class kunde
+    public class Kunde
         {
-       public int id { get; set; }
-        public string fornavn { get; set; }
-        public string etternavn { get; set; }
+       public int Id { get; set; }
+        public string Fornavn { get; set; }
+        public string Etternavn { get; set; }
         }
 
     public class DBContext : DbContext
@@ -31,11 +35,12 @@ namespace Flybillett.Models
             : base("name=Fly")
             {
             Database.CreateIfNotExists();
+
             Database.SetInitializer(new DBInit());
             }
 
-        public DbSet<flyreise> Flyreise { get; set; }
-        public DbSet<kunde> Kunde { get; set; }
+        public DbSet<Flyreise> Flyreise { get; set; }
+        public DbSet<Kunde> Kunder { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

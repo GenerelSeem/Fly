@@ -1,10 +1,11 @@
+using Flybillett.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace.Flybillett.Models
+namespace Flybillett.Models
 {
     public class DBInit : DropCreateDatabaseAlways<DBContext>
     {

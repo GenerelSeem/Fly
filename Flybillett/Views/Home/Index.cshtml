@@ -10,69 +10,115 @@
     <title>Index</title>
     <script type="text/javascript">
         $(function () {
-            $('#til').on('change', function () {
-                var val = $(this).val();  
-                    $('#Stockholm').hide();
-                    $('#Munich').hide();
-                    $('#Tokyo').hide();
-                    $('#' + val).show();
-                });
+            // Henter flyplassene(byer) du kan reise fra
+            $.ajax({
+                url: 'Home/hentAlleFraBy',
+                type: 'Get',
+                datatype: 'json',
+                success: function (fraListe) {
+                    VisFra(fraListe);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+
+
+                }
+            })
+        });
+        function VisFra(fraListe) {
+            var fraStreng = "";
+            for (var i in fraListe) {
+                fraStreng += "<option value='" + fraListe[i] + "'>" + fraListe[i] + "</option>";
+            }
+            $("#Fra").empty.append(fraStreng);
+        }
+        //Lager en hendelse i listen 
+        $("#Fra").click(function () {
+            var valgtFraFlysted = $(this).val();
+            $.ajax({
+                url: '/Home/hentTilBy',
+                type: 'Get',
+                data: { fraBy: valgtFraFlysted },
+                datatype: 'json',
+                success: function (tilListe) {
+                    VisTil(tilListe);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+
+
+                }
+            });
 
         });
-        </script>
-    
-           
-    <script type="text/javascript">
-        $(function () {
-            $('#Betaling').on('click', function () {
-                var val = $(this).val();
-                $('#Kort').hide();
-                $('#Kontant').hide();
-                $('#' + val).show();
-            })
-        })
+        function visTil(tilListe) {
+            var tilStreng = "";
+            for (var i in tilListe) {
+                tilStreng += "<option value='" + tilListe[i] + "'>" + tilListe[i] + "</option>";
+            }
+            $("Til").empty().append(tilStreng);
+        }
+        //Lager en hendelse i listen 
+        $("#Til").click(function () {
+            var valgtTilFlysted = $(this).val();
+            $.ajax({
+                url: '/Home/hentFlyreiser',
+                type: 'Get',
+                data: {
+                    fraBy: valgtFreFlysted,
+                    tilBy: valgtTilFlysted
+                },
+                datatype: 'json',
+                success: function (tilListe) {
+                    VisTil(tilListe);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+
+
+                }
+            });
+            function VisFlyreise(flyreiser) {
+                var reiseStreng = "<table class='table'><tr><th>Fra</th><th>Til</th><th>Dato</th><th>Tid</th><th>Pris</th></tr>";
+                for (var i in flyreiser) {
+                    reiseStreng = "<tr><td>" + flyreiser[i].fraFlyplass + "</td><td>" + flyreiser[i].tilFlyplass +
+                        "</td><td>" + flyreiser[i].dato + "</td><td>" + flyreiser[i].tid + "</td><td>" + flyreiser[i].pris + "<tr/>";
+                }
+                reiseStreng  +="</table>"
+                $("#flyreiser").empty().append(reiseStreng);
+            }
     </script>
+    
     
 </head>
 <body>
     <form action="" method="post"> 
-     <label for="Fornavn">Fornavn<br /></label>
-     <input id="Fornavn" name="Fornavn" type="text" value=""/>        
-        <label for="Etternavn">Etternavn<br /></label>
-        <input id="Etternavn" name="Etternavn" type="text" value="" />
-    <input type="submit"name="Navn" value="Legg til Navn"/><br />
+     <table>
+         <tr>
+             <td> Fornavn</td><td><input type="text" name="Fornavn" /> </td>
+         </tr>
+         <tr>
+             <td>Etternavn</td><td><input type="text" name="Etternavn"/></td>
+         </tr>
+     </table>
+        <input type="submit" name="Registrer " value="Registrer"/>
     </form>
     <h2>Hvor vil du fly hen?</h2>
-    <select>
-        <option value="" selected="selected"></option>
-        <option value="Oslo">Oslo</option>
-        <option value="London">London</option>
-        <option value="Roma">Roma</option>
-    </select>
+   
 
-    <select id="til" name="til">
-        <option value="" selected="selected"></option>
-        <option value="Stockholm">Stockholm</option>
-        <option value="Munich">Munich</option>
-        <option value="Tokyo">Tokyo</option>
-    </select> <br />
-
-
-    <form id="Stockholm" style="display:none">
-        <d1> Dato for reisen blir 20.11.18</d1><br />
-        <d2> Prisen er 1500 kr </d2>
-
-    </form>
-    <form id="Munich" style="display:none">
-        <d3> Dato for reisen blir 20.11.18</d3><br />
-        <d4> Prisen er 1800 kr </d4>
-
-    </form>
-    <form id="Tokyo" style="display:none">
-        <d5> Dato for reisen blir 20.11.18</d5><br />
-        <d6> Prisen er 5100 kr </d6>
-
-    </form>
+    <div class="container">
+        <div class="row">
+            <div id="Fra"class="col col-sm-3">
+                Velg fra by:<br />
+                <select id="Fra" class="btn btn-primary dropdown-toggle"></select>
+            </div>
+            <div id="Til" class="col">
+                Velg til by:<br />
+                <select id="Til"class="btn btn-primary dropdown-toggle"></select> 
+            </div>
+            </div>
+        </div>
+ 
   <br />
     <select id="Betaling" name="Betaling">
         <option value="" selected="selected"></option>
