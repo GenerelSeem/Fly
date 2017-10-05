@@ -13,21 +13,14 @@ namespace Flybillett.Models
 {
 
     public class Flyreise
-        {
+    {
         public int id { get; set; }
         public string fraBy { get; set; }
         public string tilBy { get; set; }
         public string dato { get; set; }
         public string tid { get; set; }
         public string pris { get; set; }
-        }
-
-    public class Kunde
-        {
-       public int Id { get; set; }
-        public string Fornavn { get; set; }
-        public string Etternavn { get; set; }
-        }
+    }
 
     public class DBContext : DbContext
     {
@@ -40,7 +33,7 @@ namespace Flybillett.Models
             }
 
         public DbSet<Flyreise> Flyreise { get; set; }
-        public DbSet<Kunde> Kunder { get; set; }
+    
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

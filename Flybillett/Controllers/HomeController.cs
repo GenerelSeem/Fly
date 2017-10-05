@@ -16,61 +16,44 @@ namespace Flybillett.Controllers
         {
             return View();
         }
-        public ActionResult Registrer(Models.Kunde innKunde)
-        {
-            using (var db = new Models.DBContext())
-            {
-                try
-                {
-                    db.Kunder.Add(innKunde);
-                    db.SaveChanges();
-                    
-                }
-                catch (Exception feil)
-                {
-
-                    
-                    Console.WriteLine("Oppsi noe er feil. Prøv på nytt senere");
-
-
-                }
-                return RedirectToAction("Liste");
-            }
-        }
+         
+        
         public string hentAllefraBy()
         {
-            using (var db = new DBContext()) { 
+            using (var db = new DBContext())
+            {
                 List<Flyreise> alleFly = db.Flyreise.ToList();
-            var allefraBy = new List<string>();
-            foreach (Flyreise f in alleFly)
-            {
-                string funnetFlyrerise = allefraBy.FirstOrDefault(fl => fl.Contains(f.fraBy));
-                if (funnetFlyrerise == null)
+                var allefraBy = new List<string>();
+                foreach (Flyreise f in alleFly)
                 {
-                    allefraBy.Add(f.fraBy);
+                    string funnetFlyrerise = allefraBy.FirstOrDefault(fl => fl.Contains(f.fraBy));
+                    if (funnetFlyrerise == null)
+                    {
+                        allefraBy.Add(f.fraBy);
+                    }
                 }
+                var jsonSerializer = new JavaScriptSerializer();
+                return jsonSerializer.Serialize(allefraBy);
             }
-            var jsonSerializer = new JavaScriptSerializer();
-            return jsonSerializer.Serialize(allefraBy);
         }
-    }
-    public string hentAlletilBy()
-    {
-        using (var db = new DBContext()) {
-            List<Flyreise> alleFly = db.Flyreise.ToList();
-            var alletilBy = new List<string>();
-            foreach (Flyreise f in alleFly)
+        public string hentAlletilBy()
+        {
+            using (var db = new DBContext())
             {
-                string funnetFlyrerise = alletilBy.FirstOrDefault(fl => fl.Contains(f.tilBy));
-                if (funnetFlyrerise == null)
+                List<Flyreise> alleFly = db.Flyreise.ToList();
+                var alletilBy = new List<string>();
+                foreach (Flyreise f in alleFly)
                 {
-                    alletilBy.Add(f.tilBy);
+                    string funnetFlyrerise = alletilBy.FirstOrDefault(fl => fl.Contains(f.tilBy));
+                    if (funnetFlyrerise == null)
+                    {
+                        alletilBy.Add(f.tilBy);
+                    }
                 }
+                var jsonSerializer = new JavaScriptSerializer();
+                return jsonSerializer.Serialize(alletilBy);
             }
-            var jsonSerializer = new JavaScriptSerializer();
-            return jsonSerializer.Serialize(alletilBy);
         }
-    }
 
         public string hentFlyreise(string fraBy, string tilBy)
         {
@@ -78,10 +61,11 @@ namespace Flybillett.Controllers
             {
                 List<Flyreise> alleFly = db.Flyreise.Where(
                   f => f.tilBy == tilBy && f.fraBy == fraBy).ToList();
-            
-            var jsonSerializer = new JavaScriptSerializer();
-            return jsonSerializer.Serialize(alleFly);
-        }
-}
 
+                var jsonSerializer = new JavaScriptSerializer();
+                return jsonSerializer.Serialize(alleFly);
+            }
+        }
+
+    }
 }
