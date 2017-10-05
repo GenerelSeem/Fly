@@ -52,7 +52,7 @@
             });
 
         });
-        function visTil(tilListe) {
+        function VisTil(tilListe) {
             var tilStreng = "";
             for (var i in tilListe) {
                 tilStreng += "<option value='" + tilListe[i] + "'>" + tilListe[i] + "</option>";
@@ -71,8 +71,8 @@
                     tilBy: valgtTilFlysted
                 },
                 datatype: 'json',
-                success: function (tilListe) {
-                    VisTil(tilListe);
+                success: function (Flyreise) {
+                    VisFlyreise(Flyreise);
                 },
                 error: function (x, y, z) {
                     alert(x + '\n' + y + '\n' + z);
@@ -81,11 +81,11 @@
                 }
             });
         });
-            function VisFlyreise(flyreiser) {
+            function VisFlyreise(Flyreise) {
                 var reiseStreng = "<table class='table'><tr><th>Fra</th><th>Til</th><th>Dato</th><th>Tid</th><th>Pris</th></tr>";
-                for (var i in flyreiser) {
-                    reiseStreng = "<tr><td>" + flyreiser[i].fraFlyplass + "</td><td>" + flyreiser[i].tilFlyplass +
-                        "</td><td>" + flyreiser[i].dato + "</td><td>" + flyreiser[i].tid + "</td><td>" + flyreiser[i].pris + "<tr/>";
+                for (var i in Flyreise) {
+                    reiseStreng = "<tr><td>" + Flyreise[i].fraBy + "</td><td>" + Flyreise[i].tilBy +
+                        "</td><td>" + Flyreise[i].dato + "</td><td>" + Flyreise[i].tid + "</td><td>" + Flyreise[i].pris + "<tr/>";
                 }
                 reiseStreng  +="</table>"
                 $("#flyreiser").empty().append(reiseStreng);
