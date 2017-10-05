@@ -18,40 +18,40 @@ namespace Flybillett.Controllers
         }
          
         
-        public string hentAllefraBy()
+        public string hentAlleFraBy()
         {
             using (var db = new DBContext())
             {
                 List<Flyreise> alleFly = db.Flyreise.ToList();
-                var allefraBy = new List<string>();
+                var alleFraBy = new List<string>();
                 foreach (Flyreise f in alleFly)
                 {
-                    string funnetFlyrerise = allefraBy.FirstOrDefault(fl => fl.Contains(f.fraBy));
+                    string funnetFlyrerise = alleFraBy.FirstOrDefault(fl => fl.Contains(f.fraBy));
                     if (funnetFlyrerise == null)
                     {
-                        allefraBy.Add(f.fraBy);
+                        alleFraBy.Add(f.fraBy);
                     }
                 }
                 var jsonSerializer = new JavaScriptSerializer();
-                return jsonSerializer.Serialize(allefraBy);
+                return jsonSerializer.Serialize(alleFraBy);
             }
         }
-        public string hentAlletilBy()
+        public string hentAlleTilBy()
         {
             using (var db = new DBContext())
             {
                 List<Flyreise> alleFly = db.Flyreise.ToList();
-                var alletilBy = new List<string>();
+                var alleTilBy = new List<string>();
                 foreach (Flyreise f in alleFly)
                 {
-                    string funnetFlyrerise = alletilBy.FirstOrDefault(fl => fl.Contains(f.tilBy));
+                    string funnetFlyrerise = alleTilBy.FirstOrDefault(fl => fl.Contains(f.tilBy));
                     if (funnetFlyrerise == null)
                     {
-                        alletilBy.Add(f.tilBy);
+                        alleTilBy.Add(f.tilBy);
                     }
                 }
                 var jsonSerializer = new JavaScriptSerializer();
-                return jsonSerializer.Serialize(alletilBy);
+                return jsonSerializer.Serialize(alleTilBy);
             }
         }
 
