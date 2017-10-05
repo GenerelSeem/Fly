@@ -11,7 +11,7 @@ namespace Flybillett.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        
         public ActionResult Index()
         {
             return View();
@@ -23,11 +23,13 @@ namespace Flybillett.Controllers
             using (var db = new DBContext())
             {
                 List<Flyreise> alleFly = db.Flyreise.ToList();
+
                 var alleFraBy = new List<string>();
+
                 foreach (Flyreise f in alleFly)
                 {
-                    string funnetFlyrerise = alleFraBy.FirstOrDefault(fl => fl.Contains(f.fraBy));
-                    if (funnetFlyrerise == null)
+                    string funnetFlyreise = alleFraBy.FirstOrDefault(fl => fl.Contains(f.fraBy));
+                    if (funnetFlyreise == null)
                     {
                         alleFraBy.Add(f.fraBy);
                     }
@@ -36,7 +38,7 @@ namespace Flybillett.Controllers
                 return jsonSerializer.Serialize(alleFraBy);
             }
         }
-        public string hentAlleTilBy()
+        public string hentTilBy(string fraBy)
         {
             using (var db = new DBContext())
             {
@@ -44,8 +46,8 @@ namespace Flybillett.Controllers
                 var alleTilBy = new List<string>();
                 foreach (Flyreise f in alleFly)
                 {
-                    string funnetFlyrerise = alleTilBy.FirstOrDefault(fl => fl.Contains(f.tilBy));
-                    if (funnetFlyrerise == null)
+                    string funnetFlyreise = alleTilBy.FirstOrDefault(fl => fl.Contains(f.tilBy));
+                    if (funnetFlyreise == null)
                     {
                         alleTilBy.Add(f.tilBy);
                     }

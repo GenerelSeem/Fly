@@ -11,9 +11,10 @@
     <script type="text/javascript">
         $(function () {
             // Henter flyplassene(byer) du kan reise fra
+
             $.ajax({
-                url: 'Home/hentAlleFraBy',
-                type: 'Get',
+                url: '/Home/hentAlleFraBy',
+                type: 'GET',
                 datatype: 'json',
                 success: function (fraListe) {
                     VisFra(fraListe);
@@ -23,17 +24,17 @@
 
 
                 }
-            })
-        });
+            });
+       
         function VisFra(fraListe) {
             var fraStreng = "";
             for (var i in fraListe) {
                 fraStreng += "<option value='" + fraListe[i] + "'>" + fraListe[i] + "</option>";
             }
-            $("#Fra").empty().append(fraStreng);
+            $("#dropfra").empty().append(fraStreng);
         }
         //Lager en hendelse i listen 
-        $("#Fra").click(function () {
+        $("#dropfra").click(function () {
             var valgtFraFlysted = $(this).val();
             $.ajax({
                 url: '/Home/hentTilBy',
@@ -56,16 +57,17 @@
             for (var i in tilListe) {
                 tilStreng += "<option value='" + tilListe[i] + "'>" + tilListe[i] + "</option>";
             }
-            $("Til").empty().append(tilStreng);
+            $("droptil").empty().append(tilStreng);
         }
         //Lager en hendelse i listen 
-        $("#Til").click(function () {
+        $("#droptil").click(function () {
             var valgtTilFlysted = $(this).val();
+            var valgtFraFlysted = $("dropfra").val();
             $.ajax({
                 url: '/Home/hentFlyreiser',
-                type: 'Get',
+                type: 'GET',
                 data: {
-                    fraBy: valgtFreFlysted,
+                    fraBy: valgtFraFlysted,
                     tilBy: valgtTilFlysted
                 },
                 datatype: 'json',
@@ -87,7 +89,8 @@
                 }
                 reiseStreng  +="</table>"
                 $("#flyreiser").empty().append(reiseStreng);
-            }
+        }
+        });
     </script>
     
     
@@ -111,16 +114,18 @@
         <div class="row">
             <div id="Fra"class="col col-sm-2">
                 Velg fra by:<br />
-                <select id="Fra" class="btn btn-primary dropdown-toggle"></select>
+                <select id="dropfra" class="btn btn-primary dropdown-toggle"></select>
             </div>
             <div id="Til" class="col">
                 Velg til by:<br />
-                <select id="Til"class="btn btn-primary dropdown-toggle"></select> 
+                <select id="droptil"class="btn btn-primary dropdown-toggle"></select> 
             </div>
             </div>
         </div>
  
-  <br />
+  Her er valgte mulige fly: <br />
+<div id="flyreiser">
+</div>
     <select id="Betaling" name="Betaling">
         <option value="" selected="selected"></option>
         <option value="Kort">Kort</option>
