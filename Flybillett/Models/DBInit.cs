@@ -13,7 +13,7 @@ namespace Flybillett.Models
         {
             var Flyreise1 = new Flyreise { fraBy = "Oslo", tilBy = "Bergen", dato = "22.10.2017", tid = "12:30", pris = "2650" };
             var Flyreise2 = new Flyreise { fraBy = "Oslo", tilBy = "Trondheim", dato = "21.10.2017", tid = "12:00", pris = "1250" };
-            var Flyreise3 = new Flyreise { fraBy = "Oslo", tilBy = "London", dato = "23.10.2017", tid = "13:00", pris = "1150" };
+            var Flyreise3 = new Flyreise { fraBy = "Oslo", tilBy = "Manchester", dato = "23.10.2017", tid = "13:00", pris = "1150" };
             var Flyreise4 = new Flyreise { fraBy = "Oslo", tilBy = "Manchester", dato = "21.10.2017", tid = "14:00", pris = "1450" };
             var Flyreise5 = new Flyreise { fraBy = "Oslo", tilBy = "Berlin", dato = "21.10.2017", tid = "14:00", pris = "1450" };
             var Flyreise6 = new Flyreise { fraBy = "Bergen", tilBy = "Oslo", dato = "22.10.2017", tid = "12:30", pris = "2350" };

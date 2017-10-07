@@ -81,15 +81,16 @@
                 }
             });
         });
+            
             function VisFlyreise(Flyreise) {
-                var reiseStreng = "<table class='table'><tr><th>Fra</th><th>Til</th><th>Dato</th><th>Tid</th><th>Pris</th></tr>";
+                var reiseStreng = "<table class='table'><tr><th>Fra</th><th>Til</th><th>Dato</th><th>Tid</th><th>Pris</th><th>Valg</th></tr>";
                 for (var i in Flyreise) {
-                    reiseStreng = "<tr><td>" + Flyreise[i].fraBy + "</td><td>" + Flyreise[i].tilBy +
-                        "</td><td>" + Flyreise[i].dato + "</td><td>" + Flyreise[i].tid + "</td><td>" + Flyreise[i].pris + "<tr/>";
+                    reiseStreng += "<tr><td>" + Flyreise[i].fraBy + "</td><td>" + Flyreise[i].tilBy +
+                        "</td><td>" + Flyreise[i].dato + "</td><td>" + Flyreise[i].tid + "</td><td>" + Flyreise[i].pris + "</td><td><button type="button" class="btn btn- success "><span class="glyphicon glyphicon- ok"></span> Velg</button></td><tr/>";
                 }
-                reiseStreng  +="</table>"
+                reiseStreng += "</table>"
                 $("#flyreiser").empty().append(reiseStreng);
-        }
+            }
         });
     </script>
     
@@ -118,7 +119,7 @@
             </div>
             <div id="Til" class="col">
                 Velg til by:<br />
-                <select id="droptil" class="btn btn-primary dropdown-toggle"></select> 
+                <select id="droptil" class="btn btn-primary dropdown-toggle"></select>
             </div>
             </div>
         </div>
