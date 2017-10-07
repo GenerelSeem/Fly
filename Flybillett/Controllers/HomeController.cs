@@ -46,10 +46,13 @@ namespace Flybillett.Controllers
                 var alleTilBy = new List<string>();
                 foreach (Flyreise f in alleFly)
                 {
-                    string funnetFlyreise = alleTilBy.FirstOrDefault(fl => fl.Contains(f.tilBy));
-                    if (funnetFlyreise == null)
-                    {
-                        alleTilBy.Add(f.tilBy);
+                    if (f.fraBy == fraBy)
+                    { 
+                        string funnetFlyreise = alleTilBy.FirstOrDefault(fl => fl.Contains(f.tilBy));
+                        if (funnetFlyreise == null)
+                        {
+                            alleTilBy.Add(f.tilBy);
+                        }
                     }
                 }
                 var jsonSerializer = new JavaScriptSerializer();

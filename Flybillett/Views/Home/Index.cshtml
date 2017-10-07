@@ -15,7 +15,7 @@
             $.ajax({
                 url: '/Home/hentAlleFraBy',
                 type: 'GET',
-                datatype: 'json',
+                dataType: 'json',
                 success: function (fraListe) {
                     VisFra(fraListe);
                 },
@@ -40,7 +40,7 @@
                 url: '/Home/hentTilBy',
                 type: 'Get',
                 data: { fraBy: valgtFraFlysted },
-                datatype: 'json',
+                dataType: 'json',
                 success: function (tilListe) {
                     VisTil(tilListe);
                 },
@@ -57,20 +57,20 @@
             for (var i in tilListe) {
                 tilStreng += "<option value='" + tilListe[i] + "'>" + tilListe[i] + "</option>";
             }
-            $("droptil").empty().append(tilStreng);
+            $("#droptil").empty().append(tilStreng);
         }
         //Lager en hendelse i listen 
         $("#droptil").click(function () {
             var valgtTilFlysted = $(this).val();
-            var valgtFraFlysted = $("dropfra").val();
+            var valgtFraFlysted = $("#dropfra").val();
             $.ajax({
-                url: '/Home/hentFlyreiser',
+                url: '/Home/hentFlyreise',
                 type: 'GET',
                 data: {
                     fraBy: valgtFraFlysted,
                     tilBy: valgtTilFlysted
                 },
-                datatype: 'json',
+                dataType: 'json',
                 success: function (Flyreise) {
                     VisFlyreise(Flyreise);
                 },
@@ -118,7 +118,7 @@
             </div>
             <div id="Til" class="col">
                 Velg til by:<br />
-                <select id="droptil"class="btn btn-primary dropdown-toggle"></select> 
+                <select id="droptil" class="btn btn-primary dropdown-toggle"></select> 
             </div>
             </div>
         </div>
