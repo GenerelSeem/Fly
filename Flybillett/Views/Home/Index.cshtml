@@ -25,95 +25,95 @@
 
                 }
             });
-       
-        function VisFra(fraListe) {
-            var fraStreng = "";
-            for (var i in fraListe) {
-                fraStreng += "<option value='" + fraListe[i] + "'>" + fraListe[i] + "</option>";
-            }
-            $("#dropfra").empty().append(fraStreng);
-        }
-        //Lager en hendelse i listen 
-        $("#dropfra").click(function () {
-            var valgtFraFlysted = $(this).val();
-            $.ajax({
-                url: '/Home/hentTilBy',
-                type: 'Get',
-                data: { fraBy: valgtFraFlysted },
-                dataType: 'json',
-                success: function (tilListe) {
-                    VisTil(tilListe);
-                },
-                error: function (x, y, z) {
-                    alert(x + '\n' + y + '\n' + z);
 
-
+            function VisFra(fraListe) {
+                var fraStreng = "";
+                for (var i in fraListe) {
+                    fraStreng += "<option value='" + fraListe[i] + "'>" + fraListe[i] + "</option>";
                 }
+                $("#dropfra").empty().append(fraStreng);
+            }
+            //Lager en hendelse i listen
+            $("#dropfra").click(function () {
+                var valgtFraFlysted = $(this).val();
+                $.ajax({
+                    url: '/Home/hentTilBy',
+                    type: 'Get',
+                    data: { fraBy: valgtFraFlysted },
+                    dataType: 'json',
+                    success: function (tilListe) {
+                        VisTil(tilListe);
+                    },
+                    error: function (x, y, z) {
+                        alert(x + '\n' + y + '\n' + z);
+
+
+                    }
+                });
+
+            });
+            function VisTil(tilListe) {
+                var tilStreng = "";
+                for (var i in tilListe) {
+                    tilStreng += "<option value='" + tilListe[i] + "'>" + tilListe[i] + "</option>";
+                }
+                $("#droptil").empty().append(tilStreng);
+            }
+            //Lager en hendelse i listen
+            $("#droptil").click(function () {
+                var valgtTilFlysted = $(this).val();
+                var valgtFraFlysted = $("#dropfra").val();
+                $.ajax({
+                    url: '/Home/hentFlyreise',
+                    type: 'GET',
+                    data: {
+                        fraBy: valgtFraFlysted,
+                        tilBy: valgtTilFlysted
+                    },
+                    dataType: 'json',
+                    success: function (Flyreise) {
+                        VisFlyreise(Flyreise);
+                    },
+                    error: function (x, y, z) {
+                        alert(x + '\n' + y + '\n' + z);
+                    }
+                });
             });
 
-        });
-        function VisTil(tilListe) {
-            var tilStreng = "";
-            for (var i in tilListe) {
-                tilStreng += "<option value='" + tilListe[i] + "'>" + tilListe[i] + "</option>";
-            }
-            $("#droptil").empty().append(tilStreng);
-        }
-        //Lager en hendelse i listen 
-        $("#droptil").click(function () {
-            var valgtTilFlysted = $(this).val();
-            var valgtFraFlysted = $("#dropfra").val();
-            $.ajax({
-                url: '/Home/hentFlyreise',
-                type: 'GET',
-                data: {
-                    fraBy: valgtFraFlysted,
-                    tilBy: valgtTilFlysted
-                },
-                dataType: 'json',
-                success: function (Flyreise) {
-                    VisFlyreise(Flyreise);
-                },
-                error: function (x, y, z) {
-                    alert(x + '\n' + y + '\n' + z);
-
-
-                }
-            });
-        });
-            
             function VisFlyreise(Flyreise) {
-                var reiseStreng = "<table class='table'><tr><th>Fra</th><th>Til</th><th>Dato</th><th>Tid</th><th>Pris</th><th>Valg</th></tr>";
+                var reiseStreng = "<table class='table'><tr><th>Fra</th><th>Til</th><th>Dato</th><th>Tid</th><th>Pris</th></tr>";
                 for (var i in Flyreise) {
                     reiseStreng += "<tr><td>" + Flyreise[i].fraBy + "</td><td>" + Flyreise[i].tilBy +
-                        "</td><td>" + Flyreise[i].dato + "</td><td>" + Flyreise[i].tid + "</td><td>" + Flyreise[i].pris + "</td><td><button type="button" class="btn btn- success "><span class="glyphicon glyphicon- ok"></span> Velg</button></td><tr/>";
+                        "</td><td>" + Flyreise[i].dato + "</td><td>" + Flyreise[i].tid + "</td><td>" + Flyreise[i].pris + "</td><td><input type=" + "radio name=" + "radiobutton value=" + "radiobutton></td><tr/>";
                 }
                 reiseStreng += "</table>"
                 $("#flyreiser").empty().append(reiseStreng);
             }
         });
     </script>
-    
-    
+
+
 </head>
 <body>
-    <form action="" method="post"> 
-     <table>
-         <tr>
-             <td> Fornavn</td><td><input type="text" name="Fornavn" /> </td>
-         </tr>
-         <tr>
-             <td>Etternavn</td><td><input type="text" name="Etternavn"/></td>
-         </tr>
-     </table>
-        <input type="submit" name="Registrer " value="Registrer"/>
+    <form action="" method="post">
+        <table>
+            <tr>
+                <td> Fornavn</td>
+                <td><input type="text" name="Fornavn" /> </td>
+            </tr>
+            <tr>
+                <td>Etternavn</td>
+                <td><input type="text" name="Etternavn" /></td>
+            </tr>
+        </table>
+        <input type="submit" name="Registrer " value="Registrer" />
     </form>
     <h2>Hvor vil du fly hen?</h2>
-   
+
 
     <div class="container">
         <div class="row">
-            <div id="Fra"class="col col-sm-2">
+            <div id="Fra" class="col col-sm-2">
                 Velg fra by:<br />
                 <select id="dropfra" class="btn btn-primary dropdown-toggle"></select>
             </div>
@@ -121,25 +121,15 @@
                 Velg til by:<br />
                 <select id="droptil" class="btn btn-primary dropdown-toggle"></select>
             </div>
-            </div>
         </div>
- 
-  Her er valgte mulige fly: <br />
-<div id="flyreiser">
-</div>
-    <select id="Betaling" name="Betaling">
-        <option value="" selected="selected"></option>
-        <option value="Kort">Kort</option>
-        <option value="Kontant">Kontant</option>
-    </select>   <br />
-    <form id="Kort" style="display:none">
-        <d7>Betaling godkjent</d7>
-    </form>
-    
+    </div>
 
-    <form id="Kontant" style="display:none">
-        <d8>Feil du kan ikke betale med kontanter på nett</d8>
-    </form>      
+    Her er valgte mulige fly: <br />
+    <div id="flyreiser"></div> <br />
+    <form action="/Home/Betaling">
+        <input type="submit" name="Velg og betal med kort" value="Velg og betal med kort" />
+    </form>
+
 </body>
 
 </html>

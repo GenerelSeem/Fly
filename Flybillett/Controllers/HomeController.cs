@@ -16,6 +16,10 @@ namespace Flybillett.Controllers
         {
             return View();
         }
+        public ActionResult Betaling()
+        {
+            return View();
+        }
          
         
         public string hentAlleFraBy()
