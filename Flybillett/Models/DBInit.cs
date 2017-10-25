@@ -107,14 +107,14 @@ namespace Flybillett.Models
             context.Flyreise.Add(Flyreise46);
             context.Flyreise.Add(Flyreise47);
             context.Flyreise.Add(Flyreise48);
-            var Kunde1 = new Kunde { Fornavn = "Hans", Etternavn = "Olsen", Email = "olsen@mail.no"};
-            var Kunde2 = new Kunde { Fornavn = "Peter", Etternavn = "Brende", Email = "brende@mail.no"};
-            var Kunde3 = new Kunde { Fornavn = "Stig", Etternavn = "Hansen", Email = "hansen@mail.no"};
-            var Kunde4 = new Kunde { Fornavn = "Bjarne", Etternavn = "Pettersen", Email = "pettersen@mail.no"};
-            var Kunde5 = new Kunde { Fornavn = "Ole", Etternavn = "Ottosen", Email = "ottosen@mail.no"};
-            var Kunde6 = new Kunde { Fornavn = "Raymond", Etternavn = "Brun", Email = "brun@mail.no"};
-            var Kunde7 = new Kunde { Fornavn = "Fredrik", Etternavn = "Asaf", Email = "asaf@mail.no"};
-            var Kunde8 = new Kunde { Fornavn = "Hans", Etternavn = "Johnsen", Email = "johnsen@mail.no"};
+            var Kunde1 = new Kunde { Fornavn = "Hans", Etternavn = "Olsen", Email = "olsen@mail.no" };
+            var Kunde2 = new Kunde { Fornavn = "Peter", Etternavn = "Brende", Email = "brende@mail.no" };
+            var Kunde3 = new Kunde { Fornavn = "Stig", Etternavn = "Hansen", Email = "hansen@mail.no" };
+            var Kunde4 = new Kunde { Fornavn = "Bjarne", Etternavn = "Pettersen", Email = "pettersen@mail.no" };
+            var Kunde5 = new Kunde { Fornavn = "Ole", Etternavn = "Ottosen", Email = "ottosen@mail.no" };
+            var Kunde6 = new Kunde { Fornavn = "Raymond", Etternavn = "Brun", Email = "brun@mail.no" };
+            var Kunde7 = new Kunde { Fornavn = "Fredrik", Etternavn = "Asaf", Email = "asaf@mail.no" };
+            var Kunde8 = new Kunde { Fornavn = "Hans", Etternavn = "Johnsen", Email = "johnsen@mail.no" };
             context.Kunde.Add(Kunde1);
             context.Kunde.Add(Kunde2);
             context.Kunde.Add(Kunde3);
@@ -123,7 +123,7 @@ namespace Flybillett.Models
             context.Kunde.Add(Kunde6);
             context.Kunde.Add(Kunde7);
             context.Kunde.Add(Kunde8);
-            var Admin1 = new Admin { Bruker = "admin" passord = "admin"};
+            var Admin1 = new Admin { Bruker = "admin", Passord = "admin" };            
             context.Admin.Add(Admin1);
             base.Seed(context);
         }

@@ -14,7 +14,7 @@ namespace Flybillett.Models
 
     public class Flyreise
     {
-        public int idFlyreise { get; set; }
+        public int FlyreiseId { get; set; }
         public string fraBy { get; set; }
         public string tilBy { get; set; }        
         public string pris { get; set; }
@@ -22,7 +22,7 @@ namespace Flybillett.Models
 
     public class Kunde
     {  
-        public int idKunde { get; set; }
+        public int KundeId { get; set; }
         public string Fornavn { get; set; }
         public string Etternavn { get; set; }
         public string Email { get; set; }        
@@ -30,20 +30,20 @@ namespace Flybillett.Models
 
     public class Billett
     {
-        public int idBillett { get; set; }
+        public int BillettId { get; set; }
         public DateTime Dato { get; set; }
 
         // Foreign keys
-        public int idFlyreise { get; set; }
+        public int FlyreiseId { get; set; }
         public Flyreise Flyreise { get; set; }
 
-        public int idKunde { get; set; }
+        public int KundeId { get; set; }
         public Kunde Kunde { get; set; }
     }
 
     public class Admin
     {
-        public int idAdmin { get; set; }
+        public int AdminId { get; set; }
         public string Bruker { get; set; }
         public string Passord { get; set; }        
     }
