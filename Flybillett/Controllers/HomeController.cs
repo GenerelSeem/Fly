@@ -75,6 +75,42 @@ namespace Flybillett.Controllers
                 return jsonSerializer.Serialize(alleFly);
             }
         }
+        [HttpPost]
+        public ActionResult Betaling(FormCollection betaltBillett)
+        {
+            try
+            {
+                using (var db = new Models.DBContext())
+                {
+                    //var nyBillett = new Models.Billett();
+
+                    //nyBillett.ReiseDato = betaltBillett["VelgDato"];                    
+                    //db.Billett.Add(nyBillett);
+                    //db.SaveChanges();
+
+                    var nyFlyreise = new Models.Flyreise();
+                    nyFlyreise.fraBy = betaltBillett["flyreise"];
+                    nyFlyreise.tilBy = betaltBillett["flyreise"];
+                    nyFlyreise.tid = betaltBillett["flyreise"];
+                    nyFlyreise.pris = betaltBillett["flyreise"];
+                    db.Flyreise.Add(nyFlyreise);
+                    db.SaveChanges();
+
+                    var nyKunde = new Models.Kunde();
+                    nyKunde.Fornavn = betaltBillett["Fornavn"];
+                    nyKunde.Etternavn = betaltBillett["Etternavn"];
+                    nyKunde.Email = betaltBillett["Email"];                    
+                    db.Kunde.Add(nyKunde);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index"); 
+                }
+            }
+            catch(Exception feil)
+            {
+                return View();
+            }
+        }
 
     }
 }

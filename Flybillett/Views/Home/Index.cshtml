@@ -89,6 +89,8 @@
                 reiseStreng += "</table>"
                 $("#flyreiser").empty().append(reiseStreng);
             }
+
+            //function BestillFlyreise
         });
     </script>
 
@@ -105,6 +107,10 @@
                 <td>Etternavn</td>
                 <td><input type="text" name="Etternavn" /></td>
             </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="Email" /></td>
+            </tr>
         </table>        
     <h2>Hvor vil du fly?</h2>
 
@@ -113,19 +119,19 @@
         <div class="row">
             <div id="Fra" class="col col-sm-2">
                 Velg fra by:<br />
-                <select id="dropfra" class="btn btn-primary dropdown-toggle"></select>
+                <select id="dropfra" name="dropfra" class="btn btn-primary dropdown-toggle"></select>
             </div>
             <div id="Til" class="col">
                 Velg til by:<br />
-                <select id="droptil" class="btn btn-primary dropdown-toggle"></select>
+                <select id="droptil" name="droptil" class="btn btn-primary dropdown-toggle"></select>
             </div>            
-                <br/>Velg dato: <input type="date" name="velgdato" required />           
+                <br/>Velg dato: <input id="date" type="date" name="VelgDato" required />           
         </div>
     </div>
 
     <br/>Her er valgte mulige fly: <br />
-    <div id="flyreiser"></div> <br />    
-        <input type="submit" name="Velg og betal med kort" value="Velg og betal med kort" />
+    <div id="flyreiser" name="flyreiser"></div> <br />    
+        <input type="submit" name="velg" value="Velg og betal med kort" />
     </form>
 </body>
 </html>

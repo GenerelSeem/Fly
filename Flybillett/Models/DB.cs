@@ -32,8 +32,9 @@ namespace Flybillett.Models
     public class Billett
     {
         public int BillettId { get; set; }
-        public DateTime Dato { get; set; }
-
+        
+        public DateTime ReiseDato { get; set; }
+                
         // Foreign keys
         public int FlyreiseId { get; set; }
         public Flyreise Flyreise { get; set; }
