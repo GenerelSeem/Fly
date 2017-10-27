@@ -81,10 +81,10 @@
             });
 
             function VisFlyreise(Flyreise) {
-                var reiseStreng = "<table class='table'><tr><th>Fra</th><th>Til</th><th>Dato</th><th>Tid</th><th>Pris</th></tr>";
+                var reiseStreng = "<table class='table'><tr><th>Fra</th><th>Til</th><th>Tid</th><th>Pris</th></tr>";
                 for (var i in Flyreise) {
                     reiseStreng += "<tr><td>" + Flyreise[i].fraBy + "</td><td>" + Flyreise[i].tilBy +
-                        "</td><td>" + Flyreise[i].dato + "</td><td>" + Flyreise[i].tid + "</td><td>" + Flyreise[i].pris + "</td><td><input type=" + "radio name=" + "radiobutton value=" + "radiobutton></td><tr/>";
+                        "</td><td>" + Flyreise[i].tid + "</td><td>" + Flyreise[i].pris + "</td><td><input type=" + "radio name=" + "radiobutton value=" + "radiobutton></td><tr/>";
                 }
                 reiseStreng += "</table>"
                 $("#flyreiser").empty().append(reiseStreng);
@@ -95,20 +95,18 @@
 
 </head>
 <body>
-    <form action="" method="post">
+    <form action="/Home/Betaling" method="post">
         <table>
             <tr>
-                <td> Fornavn</td>
+                <td>Fornavn</td>
                 <td><input type="text" name="Fornavn" /> </td>
             </tr>
             <tr>
                 <td>Etternavn</td>
                 <td><input type="text" name="Etternavn" /></td>
             </tr>
-        </table>
-        <input type="submit" name="Registrer " value="Registrer" />
-    </form>
-    <h2>Hvor vil du fly hen?</h2>
+        </table>        
+    <h2>Hvor vil du fly?</h2>
 
 
     <div class="container">
@@ -120,16 +118,14 @@
             <div id="Til" class="col">
                 Velg til by:<br />
                 <select id="droptil" class="btn btn-primary dropdown-toggle"></select>
-            </div>
+            </div>            
+                <br/>Velg dato: <input type="date" name="velgdato" required />           
         </div>
     </div>
 
-    Her er valgte mulige fly: <br />
-    <div id="flyreiser"></div> <br />
-    <form action="/Home/Betaling">
+    <br/>Her er valgte mulige fly: <br />
+    <div id="flyreiser"></div> <br />    
         <input type="submit" name="Velg og betal med kort" value="Velg og betal med kort" />
     </form>
-
 </body>
-
 </html>

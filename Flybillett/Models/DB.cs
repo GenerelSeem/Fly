@@ -16,7 +16,8 @@ namespace Flybillett.Models
     {
         public int FlyreiseId { get; set; }
         public string fraBy { get; set; }
-        public string tilBy { get; set; }        
+        public string tilBy { get; set; }
+        public string tid { get; set; }
         public string pris { get; set; }
     }
 
